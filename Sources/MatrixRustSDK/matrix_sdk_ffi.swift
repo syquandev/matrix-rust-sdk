@@ -12681,7 +12681,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
                 powerLevelContentOverride: FfiConverterOptionTypePowerLevels.read(from: &buf), 
                 joinRuleOverride: FfiConverterOptionTypeJoinRule.read(from: &buf), 
                 canonicalAlias: FfiConverterOptionString.read(from: &buf),
-                creation_content: FfiConverterTypeCreationContent.read(from: &buf)
+                creationContent: FfiConverterTypeCreationContent.read(from: &buf)
         )
     }
 
@@ -12697,7 +12697,12 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionTypePowerLevels.write(value.powerLevelContentOverride, into: &buf)
         FfiConverterOptionTypeJoinRule.write(value.joinRuleOverride, into: &buf)
         FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
-        FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
+        if let creationContent = value.creationContent {
+            FfiConverterTypeCreationContent.write(creationContent, into: &buf)
+        } else {
+            // Xử lý trường hợp creationContent là nil
+        }
+
     }
 }
 
