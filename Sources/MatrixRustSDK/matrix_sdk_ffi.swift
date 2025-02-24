@@ -12688,7 +12688,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
                 joinRuleOverride: FfiConverterOptionTypeJoinRule.read(from: &buf), 
                 canonicalAlias: FfiConverterOptionString.read(from: &buf),
                 type: FfiConverterOptionString.read(from: &buf),
-                creationContent: FfiConverterTypeCreationContent.read(from: &buf),
+                creationContent: FfiConverterTypeCreationContent.read(from: &buf)
         )
     }
 
@@ -12703,8 +12703,8 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionString.write(value.avatar, into: &buf)
         FfiConverterOptionTypePowerLevels.write(value.powerLevelContentOverride, into: &buf)
         FfiConverterOptionTypeJoinRule.write(value.joinRuleOverride, into: &buf)
-        FfiConverterOptionString.write(value.canonicalAlias, into: &buf),
-        FfiConverterOptionString.write(value.type, into: &buf),
+        FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
+        FfiConverterOptionString.write(value.type, into: &buf)
         FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
     }
 }
