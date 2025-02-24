@@ -12587,11 +12587,11 @@ public struct CreateRoomParameters {
     public var joinRuleOverride: JoinRule?
     public var canonicalAlias: String?
     public var type: String?
-    public var creationContent: CreationContent?
+    public var creationContent: CreationContent
     
     // Default memberwise initializers are never public by default, so we
     // declare one manually.
-    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, type: String? = nil, creationContent: CreationContent? = nil) {
+    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, type: String? = nil, creationContent: CreationContent) {
         self.name = name
         self.topic = topic
         self.isEncrypted = isEncrypted
@@ -12705,12 +12705,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionTypeJoinRule.write(value.joinRuleOverride, into: &buf)
         FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
         FfiConverterOptionString.write(value.type, into: &buf)
-        if let creationContent = value.creationContent {
-            FfiConverterTypeCreationContent.write(creationContent, into: &buf)
-        } else {
-            // Handle the case where creationContent is nil
-        }
-        
+        FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
     }
 }
 
