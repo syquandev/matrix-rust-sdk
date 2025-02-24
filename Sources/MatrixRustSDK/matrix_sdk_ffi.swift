@@ -12587,11 +12587,11 @@ public struct CreateRoomParameters {
     public var joinRuleOverride: JoinRule?
     public var canonicalAlias: String?
     public var type: String?
-    public var creationContent: CreationContent
+    public var creationContent: CreationContent?
     
     // Default memberwise initializers are never public by default, so we
     // declare one manually.
-    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, type: String? = nil, creationContent: CreationContent) {
+    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, type: String? = nil, creationContent: CreationContent?) {
         self.name = name
         self.topic = topic
         self.isEncrypted = isEncrypted
@@ -12688,7 +12688,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
                 joinRuleOverride: FfiConverterOptionTypeJoinRule.read(from: &buf), 
                 canonicalAlias: FfiConverterOptionString.read(from: &buf),
                 type: FfiConverterOptionString.read(from: &buf),
-                creationContent: FfiConverterTypeCreationContent.read(from: &buf)
+                creationContent: FfiConverterOptionTypeCreationContent.read(from: &buf)
         )
     }
 
@@ -12705,7 +12705,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionTypeJoinRule.write(value.joinRuleOverride, into: &buf)
         FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
         FfiConverterOptionString.write(value.type, into: &buf)
-        FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
+        FfiConverterOptionTypeCreationContent.write(value.creationContent, into: &buf)
     }
 }
 
