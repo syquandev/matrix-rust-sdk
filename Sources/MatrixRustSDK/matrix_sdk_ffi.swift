@@ -12706,7 +12706,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
         FfiConverterOptionString.write(value.type, into: &buf)
         if let creationContent = value.creationContent {
-            FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
+            FfiConverterTypeCreationContent.write(creationContent, into: &buf)
         } else {
             // Handle the case where creationContent is nil
         }
