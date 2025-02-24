@@ -14843,7 +14843,7 @@ public func FfiConverterTypePowerLevels_lower(_ value: PowerLevels) -> RustBuffe
 }
 
 public struct CreationContent {
-    var type: String?
+    public var type: String?
     
     public init(type: String?) {
         self.type = type
