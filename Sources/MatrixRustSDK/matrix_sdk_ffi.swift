@@ -14838,9 +14838,9 @@ public func FfiConverterTypePowerLevels_lower(_ value: PowerLevels) -> RustBuffe
 }
 
 public struct CreationContent {
-    var type: String
+    var type: String?
     
-    public init(type: String) {
+    public init(type: String?) {
         self.type = type
     }
 }
@@ -14860,11 +14860,11 @@ extension CreationContent: Equatable, Hashable {
 
 public struct FfiConverterTypeCreationContent: FfiConverterRustBuffer {
     public static func read(from buf: inout (data: Data, offset: Data.Index)) throws -> CreationContent {
-        return try CreationContent(type: FfiConverterString.read(from: &buf))
+        return try CreationContent(type: FfiConverterOptionString.read(from: &buf))
     }
 
     public static func write(_ value: CreationContent, into buf: inout [UInt8]) {
-        FfiConverterString.write(value.type, into: &buf)
+        FfiConverterOptionString.write(value.type, into: &buf)
     }
 }
 
