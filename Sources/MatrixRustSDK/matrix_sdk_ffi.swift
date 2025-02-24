@@ -12586,11 +12586,11 @@ public struct CreateRoomParameters {
     public var powerLevelContentOverride: PowerLevels?
     public var joinRuleOverride: JoinRule?
     public var canonicalAlias: String?
-    public var creation_content: CreationContent?
+    public var creationContent: CreationContent?
     
     // Default memberwise initializers are never public by default, so we
     // declare one manually.
-    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, creation_content: CreationContent?) {
+    public init(name: String?, topic: String? = nil, isEncrypted: Bool, isDirect: Bool = false, visibility: RoomVisibility, preset: RoomPreset, invite: [String]? = nil, avatar: String? = nil, powerLevelContentOverride: PowerLevels? = nil, joinRuleOverride: JoinRule? = nil, canonicalAlias: String? = nil, creationContent: CreationContent?) {
         self.name = name
         self.topic = topic
         self.isEncrypted = isEncrypted
@@ -12602,7 +12602,7 @@ public struct CreateRoomParameters {
         self.powerLevelContentOverride = powerLevelContentOverride
         self.joinRuleOverride = joinRuleOverride
         self.canonicalAlias = canonicalAlias
-        self.creation_content = creation_content
+        self.creationContent = creationContent
     }
 }
 
@@ -12643,7 +12643,7 @@ extension CreateRoomParameters: Equatable, Hashable {
         if lhs.canonicalAlias != rhs.canonicalAlias {
             return false
         }
-        if lhs.creation_content != rhs.creation_content {
+        if lhs.creationContent != rhs.creationContent {
             return false
         }
         return true
@@ -12661,7 +12661,7 @@ extension CreateRoomParameters: Equatable, Hashable {
         hasher.combine(powerLevelContentOverride)
         hasher.combine(joinRuleOverride)
         hasher.combine(canonicalAlias)
-        hasher.combine(creation_content)
+        hasher.combine(creationContent)
     }
 }
 
@@ -12681,7 +12681,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
                 powerLevelContentOverride: FfiConverterOptionTypePowerLevels.read(from: &buf), 
                 joinRuleOverride: FfiConverterOptionTypeJoinRule.read(from: &buf), 
                 canonicalAlias: FfiConverterOptionString.read(from: &buf),
-                creation_content: FfiConverterOptionTypeCreationContent.read(from: &buf)
+                creation_content: FfiConverterTypeCreationContent.read(from: &buf)
         )
     }
 
@@ -12697,7 +12697,7 @@ public struct FfiConverterTypeCreateRoomParameters: FfiConverterRustBuffer {
         FfiConverterOptionTypePowerLevels.write(value.powerLevelContentOverride, into: &buf)
         FfiConverterOptionTypeJoinRule.write(value.joinRuleOverride, into: &buf)
         FfiConverterOptionString.write(value.canonicalAlias, into: &buf)
-        FfiConverterOptionTypeCreationContent.write(value.creation_content, into: &buf)
+        FfiConverterTypeCreationContent.write(value.creationContent, into: &buf)
     }
 }
 
